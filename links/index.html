@@ -45,12 +45,13 @@
 <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 <script type="text/javascript">
     var gitalk = new Gitalk({
-        accessToken: '',
-        id: window.location.pathname,
+        clientID: 'ed09c837cb5a287364c2',
+        clientSecret: '772e6894e16520ef6e42a457144c463f11882870',
         repo: 'leshier.github.io',
         owner: 'leshier',
         admin: 'leshier',
-        distractionFreeMode: 'true'
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: 'false'  // Facebook-like distraction free mode
     })
     gitalk.render('gitalk-container')
 </script>
