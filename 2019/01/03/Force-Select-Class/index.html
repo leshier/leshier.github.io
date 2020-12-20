@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <link rel="icon" href="data:;base64,=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        leshier&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body id="bodyx">
+    
+<div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            「历史博客」- 记一次强行选课
+        </p>
+        <hr>
+    </div>
+
+    <div class="post-content">
+        <h2 id="1-起因"><a href="#1-起因" class="headerlink" title="1. 起因"></a>1. 起因</h2><p>研究生阶段要选课。但是作为学硕，有一门课在培养计划中有，但是却无法选中！</p>
+<p><img src="/2019/01/03/Force-Select-Class/image-20201220091632726.png" alt="image-20201220091632726"></p>
+<p><img src="/2019/01/03/Force-Select-Class/image-20201220091647794.png" alt="image-20201220091647794"></p>
+<p>这里的机器学习是无法选中的。</p>
+<p>这是不科学的，<code>和尚摸得，我摸不得？</code></p>
+<h2 id="2-限制"><a href="#2-限制" class="headerlink" title="2. 限制"></a>2. 限制</h2><p>目测应该是前端限制。</p>
+<p>但是我研究了一下前端代码，没有发现有什么异常。</p>
+<p><img src="/2019/01/03/Force-Select-Class/image-20201220091736415.png" alt="image-20201220091736415"></p>
+<p>应该是在JS里面限制了，JS代码又多又乱，不愿调试。直接抓包吧。</p>
+<h2 id="3-绕过限制"><a href="#3-绕过限制" class="headerlink" title="3. 绕过限制"></a>3. 绕过限制</h2><p>首先挑一个能选的课</p>
+<p><img src="https://i.loli.net/2019/01/03/5c2d93ef96830.png"></p>
+<p>这一个是能选的。</p>
+<p>抓取到选课action的数据包。</p>
+<p><img src="/2019/01/03/Force-Select-Class/image-20201220091817853.png" alt="image-20201220091817853"></p>
+<p>注意两个字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">courseId&#x3D;3305&amp;teachplanId&#x3D;19675</span><br></pre></td></tr></table></figure>
+
+<p><code>coureId=3305</code> 这个看名称是课程的ID</p>
+<p><code>teachplanId=19675</code> 这个是教学计划的ID。</p>
+<p>这样就好办了，这两个参数肯定是从<code>html</code>上获取的。我们去前端看看。</p>
+<p><img src="/2019/01/03/Force-Select-Class/image-20201220091852322.png" alt="image-20201220091852322"></p>
+<p>找到了，那么我们只要替换这门课的两个Id参数，就能选到任意课程了。</p>
+<p>我们去找找<code>机器学习</code>这门课程的编码。</p>
+<p><img src="/2019/01/03/Force-Select-Class/image-20201220091903361.png" alt="image-20201220091903361"></p>
+<p>找到了，咱们替换掉即可。</p>
+<p><img src="/2019/01/03/Force-Select-Class/image-20201220091916765.png" alt="image-20201220091916765"></p>
+<p>OK返回包显示选课成功。</p>
+<p>咱们看看效果。</p>
+<p><img src="/2019/01/03/Force-Select-Class/image-20201220091928719.png" alt="image-20201220091928719"></p>
+<p>OK！</p>
+<h2 id="4-后记"><a href="#4-后记" class="headerlink" title="4. 后记"></a>4. 后记</h2><p>后面这种情况是可以选择任何课的，相较于本科阶段还得抢课，是非常不爽的。说到抢课，有个学弟联合网安社写了抢课辅助脚本。很强。本科有需要的，可以看看：<a target="_blank" rel="noopener" href="https://io.backrunner.top/2018/12/25/%E6%B1%9F%E8%A5%BF%E8%B4%A2%E7%BB%8F%E5%A4%A7%E5%AD%A6%E9%80%89%E8%AF%BE%E8%BE%85%E5%8A%A9%E8%84%9A%E6%9C%AC.html">江西财经大学选课辅助脚本</a></p>
+
+    </div>
+
+    <div>
+        
+    <section>
+      <div id="gitalk-container"></div>
+    </section>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: 'ed09c837cb5a287364c2',
+        clientSecret: '772e6894e16520ef6e42a457144c463f11882870',
+        repo: 'leshier.github.io',
+        owner: 'leshier',
+        admin: 'leshier',
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: 'false'  // Facebook-like distraction free mode
+    })
+    gitalk.render('gitalk-container')
+</script>
+    </div>
+</div>
+
+    <div class="footer" id="footer">
+    
+        
+<script src="/js/busuanzi.pure.mini.js"></script>
+
+        <span id="busuanzi_container_site_pv">Site PV: <span id="busuanzi_value_site_pv"></span></span>
+        <span class="post-meta-divider">|</span>
+        <span id="busuanzi_container_site_uv">Site UV: <span id="busuanzi_value_site_uv"></span></span>
+    
+    <p>Copyright © 2020 <a class="flink" href="#">Modified Geek by leshier</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+        
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black"> 
+
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+
+<script src="/js/js.js"></script>
+
+
+</body>
+
+</html>
